@@ -5,31 +5,31 @@ class Table {
     this.options = data.options;
     this.data = data;
     this.type = data.options.type ? data.options.type : 'vertical_bar';
-    console.log(this);
-    this.buildVerticalBlocks();
+    
+    this.buildItems = this.runBuildFunction;
     this.injectTable();
+    console.log(this);
   }
 
-  // setting a property that the user cannot change (it's a constant)
-  get skel(){
-    return {
-      'vertical_bar': function() {
+
+
+  get runBuildFunction() {
+    var items = [];
+    // will run a different build function depending on type of table user 
+    switch (this.type) {
 	
-      }
-    };
-  }
-
-  
-
-  buildVerticalBlocks() {
-    var rects = [];
-    for(var item in this.data.items) {
-      console.log(this.data.items[item]);
-      rect = '';
-      rects.push(rect);
+      case 'vertical_bar':
+	for(var item in this.data.items) {
+	  var height = this.data.max - (this.data.max / this.data.items[item].height);
+	  var item = `<div class="vertical-bar" data-height="${height}"></div>`;
+	  items.push(item);
+	}
+	break;
     }
-  }
 
+    // assign array of items to class
+    return items;
+  }
 
   
   // Puts data into container
@@ -43,15 +43,15 @@ class Table {
 
 var data = {
   'items' : [
-    {'name': 'bar1', 'units': 7},
-    {'name': 'bar2', 'units': 8},
-    {'name': 'bar3', 'units': 9}
+    {'name': 'bar1', 'height': 7},
+    {'name': 'bar2', 'height': 8},
+    {'name': 'bar3', 'height': 9}
   ],
-  'top': 10,
+  'max': 10,
   'x_title': 'X axis',
   'y_title': 'Y axis',
   'options': {}
 }
-new Table('shipping_header', data);
+new Table('user-links', data);
 
 
