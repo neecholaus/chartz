@@ -1,30 +1,33 @@
-
 class Table {
  
-  constructor(container, options, data) {
+  constructor(container, data) {
     this.container = container;
-    this.options = options;
+    this.options = data.options;
     this.data = data;
-    this.type = options.type ?: 'vertical_bar';
-    
-    this.buildTable();
+    this.type = data.options.type ? data.options.type : 'vertical_bar';
+    console.log(this);
+    this.buildVerticalBlocks();
     this.injectTable();
   }
 
-  // setting a property that the user cannot change i.e. a constant
+  // setting a property that the user cannot change (it's a constant)
   get skel(){
     return {
-      'vertical_bar': {
-	
-      },
-      'horizontal_bar': {
+      'vertical_bar': function() {
 	
       }
     };
   }
 
-  buildTable() {
-    
+  
+
+  buildVerticalBlocks() {
+    var rects = [];
+    for(var item in this.data.items) {
+      console.log(this.data.items[item]);
+      rect = '';
+      rects.push(rect);
+    }
   }
 
 
@@ -36,4 +39,19 @@ class Table {
   }
 
 }
+
+
+var data = {
+  'items' : [
+    {'name': 'bar1', 'units': 7},
+    {'name': 'bar2', 'units': 8},
+    {'name': 'bar3', 'units': 9}
+  ],
+  'top': 10,
+  'x_title': 'X axis',
+  'y_title': 'Y axis',
+  'options': {}
+}
+new Table('shipping_header', data);
+
 
