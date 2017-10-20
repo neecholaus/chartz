@@ -6,14 +6,14 @@ class Table {
     this.data = data;
     this.type = data.options.type ? data.options.type : 'vertical_bar';
     
-    this.buildItems = this.runBuildFunction;
+    this.buildItems = this.runBuildFunction();
+    
     this.injectTable();
-    console.log(this);
   }
 
 
 
-  get runBuildFunction() {
+  runBuildFunction() {
     var items = [];
     // will run a different build function depending on type of table user 
     switch (this.type) {
@@ -21,12 +21,11 @@ class Table {
       case 'vertical_bar':
 	for(var item in this.data.items) {
 	  var height = this.data.max - (this.data.max / this.data.items[item].height);
-	  var item = `<div class="vertical-bar" data-height="${height}"></div>`;
+	  var item = `<div class="vertical-bar" data-height="${height}"><div class="vertical-bar-title">${this.data.items[item].name}</div></div>`;
 	  items.push(item);
 	}
 	break;
     }
-
     // assign array of items to class
     return items;
   }
@@ -35,7 +34,11 @@ class Table {
   // Puts data into container
   injectTable() {
     var con = document.getElementById(this.container);
-    con.innerHTML = '';
+    var htmlString = '';
+    for(var item in this.buildItems) {
+      htmlString += this.buildItems[item];
+    }
+    con.innerHTML = htmlString;
   }
 
 }
