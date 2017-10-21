@@ -1,5 +1,5 @@
 class Table {
- 
+  
   constructor(container, data) {
     this.container = container;
     this.options = data.options;
@@ -25,6 +25,10 @@ class Table {
   // based on type of table
   buildInjection() {
     switch (this.type) {
+      case 'horizontal_bar':
+	this.buildItems = this.horizontal_bar_build();
+	this.injection = this.horizontal_bar_injection();
+	break;
       case 'vertical_bar':
 	this.buildItems = this.vertical_bar_build();
 	this.injection = this.vertical_bar_injection();
@@ -40,7 +44,27 @@ class Table {
   
   
 
-
+  // Horizontal Bar Table Builds
+  horizontal_bar_build() {
+    var items = [];
+    for(var item in this.data.items) {
+      var width = this.data.max - (this.data.max / this.data.items[item].width);
+      var item = `<div class="width-bar" data-width="${width}"><div class="horizontal-bar-title">${this.data.items[item].name}</div></div>`;
+      items.push(item);
+    }
+    return items;
+  }
+  // Returns the final injection method
+  horizontal_bar_injection() {
+    return function() {
+      var con = document.getElementById(this.container);
+      var htmlString = '';
+      for(var item in this.buildItems) {
+	htmlString += this.buildItems[item];
+      }
+      con.innerHTML = htmlString;
+    }
+  }
   
   
   // Vertical Bar Table Builds
