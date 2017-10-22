@@ -27,11 +27,11 @@ class Table {
     switch (this.type) {
       case 'horizontal_bar':
 	this.buildItems = this.horizontal_bar_build();
-	this.injection = this.horizontal_bar_injection();
+	this.injection = this.bar_injection();
 	break;
       case 'vertical_bar':
 	this.buildItems = this.vertical_bar_build();
-	this.injection = this.vertical_bar_injection();
+	this.injection = this.bar_injection();
 	break;
     }
   }
@@ -54,17 +54,6 @@ class Table {
     }
     return items;
   }
-  // Returns the final injection method
-  horizontal_bar_injection() {
-    return function() {
-      var con = document.getElementById(this.container);
-      var htmlString = '';
-      for(var item in this.buildItems) {
-	htmlString += this.buildItems[item];
-      }
-      con.innerHTML = htmlString;
-    }
-  }
   
   
   // Vertical Bar Table Builds
@@ -78,8 +67,12 @@ class Table {
     }
     return items;
   }
-  // Returns the final injection method
-  vertical_bar_injection() {
+
+
+
+
+  // Injection for bar type graphs
+  bar_injection() {
     return function() {
       var con = document.getElementById(this.container);
       var htmlString = '';
@@ -90,6 +83,11 @@ class Table {
     }
   }
 
+
+
+
+  
+// End of constructor
 }
 
 
