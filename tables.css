@@ -1,0 +1,10 @@
+
+
+
+/* Vertical Styles */
+.vertical_bar_table_con {
+    width: 100%;
+}
+.vertical_bar_table_con .vertical-bar {
+    display: inline-block;
+}

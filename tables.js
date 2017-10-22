@@ -14,50 +14,36 @@ class Table {
 
   runBuildFunction() {
     // Stores built HTML strings and final injection function
-    this.buildInjection();
+    this.build();
     // Runs final injection
-    this.runInjection();
+    this.inject();
+    // Styles up the table
+    this.styleIt();
   }
 
 
 
   // Loops through data and builds html string
   // based on type of table
-  buildInjection() {
+  build() {
     switch (this.type) {
-      case 'horizontal_bar':
-	this.buildItems = this.horizontal_bar_build();
-	this.injection = this.bar_injection();
-	break;
       case 'vertical_bar':
 	this.buildItems = this.vertical_bar_build();
-	this.injection = this.bar_injection();
+	this.inject = this.bar_injection();
+	this.styleIt = this.vertical_bar_style();
 	break;
     }
   }
-
-
-  // Runs the final injection function
-  runInjection() {
-    this.injection();
-  }
   
   
 
-  // Horizontal Bar Table Builds
-  horizontal_bar_build() {
-    var items = [];
-    for(var item in this.data.items) {
-      var width = this.data.max - (this.data.max / this.data.items[item].width);
-      var item = `<div class="width-bar" data-width="${width}"><div class="horizontal-bar-title">${this.data.items[item].name}</div></div>`;
-      items.push(item);
-    }
-    return items;
-  }
+
+
+
+
+  // ================================== BUILDS ================================== \\
   
-  
-  // Vertical Bar Table Builds
-  // HTML String builder
+  // VERTICAL BUILD 
   vertical_bar_build() {
     var items = [];
     for(var item in this.data.items) {
@@ -71,6 +57,12 @@ class Table {
 
 
 
+
+
+
+
+
+  // ================================== INJECTIONS ================================== \\
   // Injection for bar type graphs
   bar_injection() {
     return function() {
@@ -80,9 +72,31 @@ class Table {
 	htmlString += this.buildItems[item];
       }
       con.innerHTML = htmlString;
+      con.classList += `${this.type}_table_con`;
     }
   }
 
+
+
+
+
+
+
+
+  // ================================== STYLING ================================== \\
+  vertical_bar_style() {
+    return function() {
+      var all_bars = document.querySelectorAll('.vertical-bar');
+      var count_bars = all_bars.length;
+      var width = 100 / count_bars.toFixed('2');
+      all_bars.forEach(function(e) {
+	e.style.width = `${width}%`;
+	e.style.textAlign = 'center';
+      });
+    }
+  }
+
+  
 
 
 
@@ -103,11 +117,11 @@ var data = {
     {'name': 'bar2', 'height': 8},
     {'name': 'bar3', 'height': 9}
   ],
-  'max': 10,
+  'max': 300,
   'x_title': 'X axis',
   'y_title': 'Y axis',
   'options': {}
 }
-new Table('user-links', data);
+new Table('container', data);
 
 
