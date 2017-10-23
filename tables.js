@@ -89,11 +89,15 @@ class Table {
 
       // Style container
       var con = document.getElementById('vertical_bar_table_con');
+      if(this.data.max) {
+	con.style.height = this.data.max;
+	console.log(con.style);
+      }
       
       // Style bars
       var all_bars = document.querySelectorAll('.vertical_bar_con');
       var count_bars = all_bars.length;
-      var width = (100 / count_bars).toFixed(0);
+      var width = (100 / count_bars);
       all_bars.forEach(function(e) {
 	var height = e.getAttribute('data-height');
 	e.style = `width: ${width}% !important; text-align: center; height: ${height}px;`;
@@ -125,11 +129,14 @@ class Table {
 // Test Data for a vertical bar table.
 var data = {
   'items' : [
-    {'name': 'bar1', 'height': 100},
-    {'name': 'bar2', 'height': 200},
-    {'name': 'bar3', 'height': 300}
+    {'name': 'Bar 1', 'height': 100},
+    {'name': 'Bar 2', 'height': 200},
+    {'name': 'Bar 3', 'height': 300},
+    {'name': 'Bar 4', 'height': 100},
+    {'name': 'Bar 5', 'height': 200},
+    {'name': 'Bar 6', 'height': 300},
   ],
-  'max': 300,
+  'max': 400,
   'x_title': 'X axis',
   'y_title': 'Y axis',
   'options': {}
