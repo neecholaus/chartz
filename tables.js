@@ -47,8 +47,8 @@ class Table {
   vertical_bar_build() {
     var items = [];
     for(var item in this.data.items) {
-      var height = this.data.max - (this.data.max / this.data.items[item].height);
-      var item = `<div class="vertical-bar" data-height="${height}"><div class="vertical-bar-title">${this.data.items[item].name}</div></div>`;
+      var height = this.data.items[item].height;
+      var item = `<div class="vertical_bar_con"><div class="vertical_bar" data-height="${height}"><div class="vertical_bar_title" data-height="${height}">${this.data.items[item].name}</div></div></div>`;
       items.push(item);
     }
     return items;
@@ -72,7 +72,7 @@ class Table {
 	htmlString += this.buildItems[item];
       }
       con.innerHTML = htmlString;
-      con.classList += `${this.type}_table_con`;
+      con.id = `${this.type}_table_con`;
     }
   }
 
@@ -86,12 +86,24 @@ class Table {
   // ================================== STYLING ================================== \\
   vertical_bar_style() {
     return function() {
-      var all_bars = document.querySelectorAll('.vertical-bar');
+
+      // Style container
+      var con = document.getElementById('vertical_bar_table_con');
+      
+      // Style bars
+      var all_bars = document.querySelectorAll('.vertical_bar_con');
       var count_bars = all_bars.length;
-      var width = 100 / count_bars.toFixed('2');
+      var width = (100 / count_bars).toFixed(0);
       all_bars.forEach(function(e) {
-	e.style.width = `${width}%`;
-	e.style.textAlign = 'center';
+	var height = e.getAttribute('data-height');
+	e.style = `width: ${width}% !important; text-align: center; height: ${height}px;`;
+      });
+
+      // Style titles
+      var all_titles = document.querySelectorAll('.vertical_bar_title');
+      all_titles.forEach(function(e) {
+	var height = e.getAttribute('data-height');
+	e.style = `line-height: ${height}px`;
       });
     }
   }
@@ -113,9 +125,9 @@ class Table {
 // Test Data for a vertical bar table.
 var data = {
   'items' : [
-    {'name': 'bar1', 'height': 7},
-    {'name': 'bar2', 'height': 8},
-    {'name': 'bar3', 'height': 9}
+    {'name': 'bar1', 'height': 100},
+    {'name': 'bar2', 'height': 200},
+    {'name': 'bar3', 'height': 300}
   ],
   'max': 300,
   'x_title': 'X axis',

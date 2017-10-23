@@ -2,9 +2,20 @@
 
 
 /* Vertical Styles */
-.vertical_bar_table_con {
+#vertical_bar_table_con {
     width: 100%;
 }
-.vertical_bar_table_con .vertical-bar {
+#vertical_bar_table_con .vertical_bar_con {
     display: inline-block;
+    vertical-align: bottom;
+}
+#vertical_bar_table_con .vertical_bar {
+    background: #e3e3e3;
+    width: 94%;
+    margin: 0 auto;
+}
+#vertical_bar_table_con .vertical_bar_title {
+    height: 100%;
+    vertical-align: middle;
+    margin: 0;
 }
