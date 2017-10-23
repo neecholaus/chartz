@@ -48,7 +48,8 @@ class Table {
     var items = [];
     for(var item in this.data.items) {
       var height = this.data.items[item].height;
-      var item = `<div class="vertical_bar_con"><div class="vertical_bar" data-height="${height}"><div class="vertical_bar_title" data-height="${height}">${this.data.items[item].name}</div></div></div>`;
+      var classes = this.data.items[item].classes ? this.data.items[item].classes.join(' ') : '';
+      var item = `<div class="vertical_bar_con"><div class="vertical_bar ${classes}" data-height="${height}"><div class="vertical_bar_title" data-height="${height}">${this.data.items[item].name}</div></div></div>`;
       items.push(item);
     }
     return items;
@@ -129,12 +130,8 @@ class Table {
 // Test Data for a vertical bar table.
 var data = {
   'items' : [
-    {'name': 'Bar 1', 'height': 100},
-    {'name': 'Bar 2', 'height': 200},
-    {'name': 'Bar 3', 'height': 300},
-    {'name': 'Bar 4', 'height': 100},
-    {'name': 'Bar 5', 'height': 200},
-    {'name': 'Bar 6', 'height': 300},
+    {'name': 'Bar 1', 'height': 100, 'classes': ['red']},
+    {'name': 'Bar 1', 'height': 400, 'classes': ['green']}
   ],
   'max': 400,
   'x_title': 'X axis',
