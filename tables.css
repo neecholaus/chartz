@@ -22,7 +22,9 @@
   vertical-align: middle;
   margin: 0;
 }
-
 #vertical_bar_table_con .vertical_bar:hover {
   background: #c3c3c3;
+}
+#vertical_bar_table_con #vertical_max_width_con {
+    text-align: center;
 }

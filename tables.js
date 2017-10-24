@@ -2,10 +2,8 @@ class Table {
   
   constructor(container, data) {
     this.container = container;
-    this.options = data.options;
     this.data = data;
-    this.type = data.options.type ? data.options.type : 'vertical_bar';
-
+    this.type = data.type ? data.type : 'vertical_bar';
     
     this.runBuildFunction();   
   }
@@ -68,10 +66,11 @@ class Table {
   bar_injection() {
     return function() {
       var con = document.getElementById(this.container);
-      var htmlString = '';
+      var htmlString = '<div id="vertical_max_width_con">';
       for(var item in this.buildItems) {
 	htmlString += this.buildItems[item];
       }
+      htmlString += '</div>';
       con.innerHTML = htmlString;
       con.id = `${this.type}_table_con`;
     }
@@ -92,16 +91,18 @@ class Table {
       var con = document.getElementById('vertical_bar_table_con');
       if(this.data.max) {
 	con.style.height = this.data.max;
-	console.log(con.style);
       }
       
       // Style bars
       var all_bars = document.querySelectorAll('.vertical_bar_con');
       var count_bars = all_bars.length;
       var width = (100 / count_bars);
+      if(this.data.max_width) {
+	var max_width = this.data.max_width;
+      }
       all_bars.forEach(function(e) {
 	var height = e.getAttribute('data-height');
-	e.style = `width: ${width}% !important; text-align: center; height: ${height}px;`;
+	e.style = `width: ${width}% !important; text-align: center; height: ${height}px; max-width: ${max_width}px;`;
       });
 
       // Style titles
@@ -133,10 +134,9 @@ var data = {
     {'name': 'Bar 1', 'height': 100, 'classes': ['red']},
     {'name': 'Bar 1', 'height': 400, 'classes': ['green']}
   ],
+  'type': 'vertical_bar',
   'max': 400,
-  'x_title': 'X axis',
-  'y_title': 'Y axis',
-  'options': {}
+  'max_width': 200,
 }
 new Table('container', data);
 
