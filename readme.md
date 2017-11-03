@@ -2,4 +2,18 @@
 Nick Neuman
 
 
-This will be a plugin for easily injecting useful and beautiful data into your webpage.
+## Getting Started:
+Initialize a new table with
+```javascript
+new Table('id-of-container', data);
+```
+
+### Vertical Bar Graph:
+Minimum needed is
+```javascript
+var data = [
+  'items': [
+    {'name': 'Bar1', 'height': 100}
+  ]; 
+];
+```
