@@ -16,7 +16,7 @@ let options = {
 
 
 ### Options
-```
+```javascript
 {
     items: item[],            // array of items (see item interface)
     type: <string>,             // default: 'vertical_bar'
@@ -32,7 +32,7 @@ let options = {
 
                
 ### Item Interface
-```
+```javascript
 {
     name: <string>,
     height: <int>,
