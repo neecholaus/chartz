@@ -4,10 +4,10 @@ class Table {
         this.data = data;
         this.type = data.type ? data.type : 'vertical_bar';
 
-        this.runBuildFunction();
+        this.make();
     }
 
-    runBuildFunction() {
+    make() {
         // Stores built HTML strings and final injection function
         this.init();
         // Runs final injection
@@ -30,13 +30,13 @@ class Table {
 
     build() {
         var items = [];
-        for(var item in this.data.items) {
+        for (var item in this.data.items) {
             var height = this.data.items[item].height;
             var classes = this.data.items[item].classes ? this.data.items[item].classes.join(' ') : '';
 
-            let one = '<div class="vertical_bar_con">';
-            let two = `<div class="vertical_bar ${classes}" data-height="${height}">`;
-            let three = `<div class="vertical_bar_title" data-height="${height}">`;
+            let one = '<div class="table-item-container">';
+            let two = `<div class="table-item ${classes}" data-height="${height}">`;
+            let three = `<div class="table-item-title" data-height="${height}">`;
             let four = `${this.data.items[item].name}`;
             let end = '</div>';
 
@@ -49,15 +49,15 @@ class Table {
 
     // Injection for bar type graphs
     inject() {
-        return function() {
+        return function () {
             let con = document.getElementById(this.container);
-            let htmlString = '<div id="vertical_max_width_con">';
-            for(let item in this.buildItems) {
+            let htmlString = '<div id="table-max-width-container">';
+            for (let item in this.buildItems) {
                 htmlString += this.buildItems[item];
             }
             htmlString += '</div>';
             con.innerHTML = htmlString;
-            con.id = `${this.type}_table_con`;
+            con.id = 'table-container';
         }
     }
 
@@ -65,7 +65,7 @@ class Table {
         return function () {
 
             // Style container
-            var con = document.getElementById('vertical_bar_table_con');
+            var con = document.getElementById('table-container');
 
             // Set the height of container if given
             if (this.data.height) {
@@ -73,7 +73,7 @@ class Table {
             }
 
             // Style bars
-            let all_bars = document.querySelectorAll('.vertical_bar_con');
+            let all_bars = document.querySelectorAll('.table-item-container');
             let count_bars = all_bars.length;
             let width = (100 / count_bars);
             let max_width;
@@ -83,7 +83,7 @@ class Table {
 
             all_bars.forEach(function (e) {
                 let barContainer = e;
-                let bar = barContainer.getElementsByClassName('vertical_bar')[0];
+                let bar = barContainer.getElementsByClassName('table-item')[0];
 
                 // set width of bar
                 barContainer.style.width = `${width}%`;
@@ -95,7 +95,7 @@ class Table {
             });
 
             // Style titles
-            let all_titles = document.querySelectorAll('.vertical_bar_title');
+            let all_titles = document.querySelectorAll('.table-item-title');
             all_titles.forEach(function (e) {
                 let height = e.getAttribute('data-height');
                 e.style.lineHeight = `${height}px`;
