@@ -1,19 +1,40 @@
-# Tables
+# tableJS
 
-## Getting Started:
+### Getting Started:
 Initialize a new table with
 ```javascript
 new Table(<element-id>, <options>);
 ```
-
-Options should follow this standard
+The bare necessities for the options is this:
 ```javascript
-var options = {
+let options = {
   items: [
-    {name: <string>, height: <px>},
-    {name: <string>, height: <px>}
-  ],
-  height:    <px> | <null>,    // optional
-  max_width: <px> | <null>     // optional
-};
+    {name: <string>, height: <int>}    
+  ]
+}
 ```
+
+
+### Options
+```
+{
+    items: item[],            // array of items (see item interface)
+    type: <string>,             // default: 'vertical_bar'
+    container: {
+        height: <int> | <null>
+        width: <int> | <null>
+    },
+    column: {
+        maxWidth: <int> | <null>
+    }
+}
+```
+
+               
+### Item Interface
+```
+{
+    name: <string>,
+    height: <int>,
+    classes: <string[]> | null
+}

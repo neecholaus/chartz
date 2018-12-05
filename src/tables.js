@@ -65,20 +65,19 @@ class Table {
         return function () {
 
             // Style container
-            var con = document.getElementById('table-container');
+            let con = document.getElementById('table-container');
 
             // Set the height of container if given
-            if (this.data.height) {
-                con.style.height = this.data.height;
-            }
+            if (this.data.container.height) con.style.height = this.data.container.height;
+            if (this.data.container.width) con.style.width = `${this.data.container.width}%`;
 
             // Style bars
             let all_bars = document.querySelectorAll('.table-item-container');
             let count_bars = all_bars.length;
             let width = (100 / count_bars);
-            let max_width;
-            if (this.data.max_width) {
-                max_width = this.data.max_width;
+            let maxWidth;
+            if (this.data.column.maxWidth) {
+                maxWidth = this.data.column.maxWidth;
             }
 
             all_bars.forEach(function (e) {
@@ -87,7 +86,7 @@ class Table {
 
                 // set width of bar
                 barContainer.style.width = `${width}%`;
-                barContainer.style.maxWidth = `${max_width}px`;
+                barContainer.style.maxWidth = `${maxWidth}px`;
 
                 let height = bar.getAttribute('data-height');
                 bar.style.textAlign = 'center';
