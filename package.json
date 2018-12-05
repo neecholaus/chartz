@@ -1,17 +1,19 @@
 {
-  "name": "tables",
-  "version": "1.0.0",
-  "description": "Nick Neuman",
-  "main": "dist/tables.js",
-  "scripts": {},
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neecholaus/tables.git"
-  },
-  "author": "Nick Neuman",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/neecholaus/tables/issues"
-  },
-  "homepage": "https://github.com/neecholaus/tables#readme"
+    "name": "tables",
+    "version": "1.0.0",
+    "description": "Nick Neuman",
+    "main": "dist/tables.js",
+    "scripts": {
+        "build-css": "node-sass --include-path scss ./src/tables.scss ./dist/tables.css --output-style compressed"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/neecholaus/tables.git"
+    },
+    "author": "Nick Neuman",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/neecholaus/tables/issues"
+    },
+    "homepage": "https://github.com/neecholaus/tables#readme"
 }
