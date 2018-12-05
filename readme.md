@@ -1,19 +1,19 @@
 # Tables
-Nick Neuman
-
 
 ## Getting Started:
 Initialize a new table with
 ```javascript
-new Table('id-of-container', data);
+new Table(<element-id>, <options>);
 ```
 
-### Vertical Bar Graph:
-Minimum needed is
+Options should follow this standard
 ```javascript
-var data = [
-  'items': [
-    {'name': 'Bar1', 'height': 100}
-  ]; 
-];
+var options = {
+  items: [
+    {name: <string>, height: <px>},
+    {name: <string>, height: <px>}
+  ],
+  height:    <px> | <null>,    // optional
+  max_width: <px> | <null>     // optional
+};
 ```
