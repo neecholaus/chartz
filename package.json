@@ -1,0 +1,17 @@
+{
+  "name": "tables",
+  "version": "1.0.0",
+  "description": "Nick Neuman",
+  "main": "dist/tables.js",
+  "scripts": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neecholaus/tables.git"
+  },
+  "author": "Nick Neuman",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neecholaus/tables/issues"
+  },
+  "homepage": "https://github.com/neecholaus/tables#readme"
+}

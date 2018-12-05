@@ -1,6 +1,6 @@
-
-
-
+#vertical_bar_table_con {
+  font-family: sans-serif;
+}
 /* Vertical Styles */
 #vertical_bar_table_con {
   width: 100%;
@@ -26,5 +26,5 @@
   background: #c3c3c3;
 }
 #vertical_bar_table_con #vertical_max_width_con {
-    text-align: center;
+  text-align: center;
 }
