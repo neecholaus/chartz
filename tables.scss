@@ -1,7 +1,7 @@
 #table-container {
     font-family: sans-serif;
     width: 100%;
-    border: solid 1px #a3a3a3;
+    border: solid 1px #c3c3c3;
     margin: 0 auto;
 
     #table-max-width-container {
@@ -12,11 +12,12 @@
         display: inline-block;
         vertical-align: bottom;
         margin: 0 auto;
+        color: #686868;
 
         .table-item {
-            background: #e3e3e3;  
-            font-weight: bold;  
-            width: 95%;
+            background: #e3e3e3;
+            font-weight: bold;
+            width: 100%;
             margin: 0 auto;
             transition: all ease 0s;
 
@@ -27,31 +28,55 @@
             &.primary {
                 background: #007bff;
                 color: white;
+
+                &:hover {
+                    background: #0673e8;
+                }
             }
-    
+
             &.success {
                 background: #28a745;
                 color: white;
+
+                &:hover {
+                    background: #22963d;
+                }
             }
-    
+
             &.danger {
                 background: #dc3545;
                 color: white;
+
+                &:hover {
+                    background: #ce2d3d;
+                }
             }
-    
+
             &.warning {
                 background: #ffc107;
                 color: black;
+
+                &:hover {
+                    background: #efb60b;
+                }
             }
-    
+
             &.info {
                 background: #17a2b8;
                 color: white;
+
+                &:hover {
+                    background: #1398ad;
+                }
             }
-    
+
             &.secondary {
                 background: #6c757d;
                 color: white;
+
+                &:hover {
+                    background: #636a70;
+                }
             }
 
             .table-item-title {

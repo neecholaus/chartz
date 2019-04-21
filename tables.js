@@ -52,9 +52,9 @@ class Table {
         return function () {
             let con = document.getElementById(this.container);
             let htmlString = '<div id="table-max-width-container">';
-            for (let item in this.buildItems) {
-                htmlString += this.buildItems[item];
-            }
+
+            for (let item in this.buildItems) htmlString += this.buildItems[item];
+
             htmlString += '</div>';
             con.innerHTML = htmlString;
             con.id = 'table-container';
@@ -63,21 +63,24 @@ class Table {
 
     style() {
         return function () {
+            let {container, column} = this.data;
 
             // Style container
             let con = document.getElementById('table-container');
 
             // Set the height of container if given
-            if (this.data.container.height) con.style.height = this.data.container.height;
-            if (this.data.container.width) con.style.width = `${this.data.container.width}%`;
+            if(container) {
+                con.style.height = container.height ? container.height : 'auto';
+                con.style.width = container.width ? `${container.width}%` : 'auto';
+            }
 
             // Style bars
             let all_bars = document.querySelectorAll('.table-item-container');
             let count_bars = all_bars.length;
             let width = (100 / count_bars);
             let maxWidth;
-            if (this.data.column.maxWidth) {
-                maxWidth = this.data.column.maxWidth;
+            if(column && column.maxWidth) {
+                maxWidth = column.maxWidth;
             }
 
             all_bars.forEach(function (e) {
@@ -102,3 +105,5 @@ class Table {
         }
     }
 }
+
+module.exports = Table;

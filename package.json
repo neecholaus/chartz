@@ -2,9 +2,10 @@
     "name": "tables",
     "version": "1.0.0",
     "description": "Nick Neuman",
-    "main": "dist/tables.js",
+    "main": "./tables.js",
     "scripts": {
-        "build-css": "./node_modules/node-sass/bin/node-sass --include-path scss ./src/tables.scss ./dist/tables.css --output-style compressed"
+        "node-sass": "node-sass",
+        "css": "node-sass ./tables.scss ./tables.css"
     },
     "repository": {
         "type": "git",
@@ -16,7 +17,8 @@
         "url": "https://github.com/neecholaus/tables/issues"
     },
     "homepage": "https://github.com/neecholaus/tables#readme",
+    "dependencies": {},
     "devDependencies": {
-        "node-sass": "^4.10.0"
+        "node-sass": "^4.11.0"
     }
 }
