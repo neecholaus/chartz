@@ -1,8 +1,8 @@
-class Table {
+class Chart {
     constructor(container, data) {
         this.container = container;
         this.data = data;
-        this.type = data.type ? data.type : 'vertical_bar';
+        this.type = data.type ? data.type : 'bar-vertical';
 
         this.make();
     }
@@ -12,15 +12,15 @@ class Table {
         this.init();
         // Runs final injection
         this.doInjection();
-        // Styles up the table
+        // Styles up the chart
         this.styleIt();
     }
 
     // Loops through data and builds html string
-    // based on type of table
+    // based on type of chart
     init() {
         switch (this.type) {
-            case 'vertical_bar':
+            case 'bar-vertical':
                 this.buildItems = this.build();
                 this.doInjection = this.inject();
                 this.styleIt = this.style();
@@ -34,9 +34,9 @@ class Table {
             var height = this.data.items[item].height;
             var classes = this.data.items[item].classes ? this.data.items[item].classes.join(' ') : '';
 
-            let one = '<div class="table-item-container">';
-            let two = `<div class="table-item ${classes}" data-height="${height}">`;
-            let three = `<div class="table-item-title" data-height="${height}">`;
+            let one = '<div class="chart-item-container">';
+            let two = `<div class="chart-item ${classes}" data-height="${height}">`;
+            let three = `<div class="chart-item-title" data-height="${height}">`;
             let four = `${this.data.items[item].name}`;
             let end = '</div>';
 
@@ -51,13 +51,13 @@ class Table {
     inject() {
         return function () {
             let con = document.getElementById(this.container);
-            let htmlString = '<div id="table-max-width-container">';
+            let htmlString = '<div id="chart-max-width-container">';
 
             for (let item in this.buildItems) htmlString += this.buildItems[item];
 
             htmlString += '</div>';
             con.innerHTML = htmlString;
-            con.id = 'table-container';
+            con.id = 'chart-container';
         }
     }
 
@@ -66,7 +66,7 @@ class Table {
             let {container, column} = this.data;
 
             // Style container
-            let con = document.getElementById('table-container');
+            let con = document.getElementById('chart-container');
 
             // Set the height of container if given
             if(container) {
@@ -75,7 +75,7 @@ class Table {
             }
 
             // Style bars
-            let all_bars = document.querySelectorAll('.table-item-container');
+            let all_bars = document.querySelectorAll('.chart-item-container');
             let count_bars = all_bars.length;
             let width = (100 / count_bars);
             let maxWidth;
@@ -85,7 +85,7 @@ class Table {
 
             all_bars.forEach(function (e) {
                 let barContainer = e;
-                let bar = barContainer.getElementsByClassName('table-item')[0];
+                let bar = barContainer.getElementsByClassName('chart-item')[0];
 
                 // set width of bar
                 barContainer.style.width = `${width}%`;
@@ -97,7 +97,7 @@ class Table {
             });
 
             // Style titles
-            let all_titles = document.querySelectorAll('.table-item-title');
+            let all_titles = document.querySelectorAll('.chart-item-title');
             all_titles.forEach(function (e) {
                 let height = e.getAttribute('data-height');
                 e.style.lineHeight = `${height}px`;
@@ -106,4 +106,4 @@ class Table {
     }
 }
 
-module.exports = Table;
+module.exports = Chart;

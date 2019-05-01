@@ -1,12 +1,12 @@
 
-# tableJS
+# Chartz
 
 ![Sreenshot of an example](./docs/screenshot.png)
 
 ### Getting Started:
-Initialize a new table with:
+Initialize a new chart with:
 ```javascript
-new Table(elementId, options);
+new Chart(elementId, options);
 ```
 The bare necessities for the options is this:
 ```javascript
@@ -23,7 +23,7 @@ The bare necessities for the options is this:
 ```javascript
 {
     items: [],
-    type: <string>, /* Defaults to 'vertical_bar' */
+    type: <string>, /* Defaults to 'bar-vertical' */
     container: {
         height: <string>, /* Optional | Passed exactly as given */
         width: <int> /* Optional | Passed as percentage */

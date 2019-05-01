@@ -1,11 +1,11 @@
 {
-    "name": "tables",
+    "name": "chartz",
     "version": "1.0.0",
     "description": "Nick Neuman",
-    "main": "./tables.js",
+    "main": "./chartz.js",
     "scripts": {
         "node-sass": "node-sass",
-        "css": "node-sass ./tables.scss ./tables.css"
+        "css": "node-sass ./chartz.scss ./chartz.css"
     },
     "repository": {
         "type": "git",
@@ -19,6 +19,6 @@
     "homepage": "https://github.com/neecholaus/tables#readme",
     "dependencies": {},
     "devDependencies": {
-        "node-sass": "^4.11.0"
+        "node-sass": "^4.12.0"
     }
 }
