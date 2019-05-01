@@ -1,7 +1,7 @@
 
 # Chartz
 
-![Sreenshot of an example](./docs/screenshot.png)
+![Sreenshot of an example](./docs/example.png)
 
 ### Getting Started:
 Initialize a new chart with:
