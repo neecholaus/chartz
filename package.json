@@ -1,6 +1,6 @@
 {
     "name": "chartz",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Nick Neuman",
     "main": "./chartz.js",
     "scripts": {
@@ -14,11 +14,13 @@
     "author": "Nick Neuman",
     "license": "MIT",
     "bugs": {
-        "url": "https://github.com/neecholaus/tables/issues"
+        "url": "https://github.com/neecholaus/chartz/issues"
     },
-    "homepage": "https://github.com/neecholaus/tables#readme",
+    "homepage": "https://github.com/neecholaus/chartz#readme",
     "dependencies": {},
-    "devDependencies": {
-        "node-sass": "^4.12.0"
-    }
+    "devDependencies": {},
+	"keywords": [
+		"chart",
+		"javascript"
+	]
 }

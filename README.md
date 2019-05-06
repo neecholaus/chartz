@@ -1,9 +1,18 @@
-
 # Chartz
 
 ![Sreenshot of an example](./docs/example.png)
 
 ### Getting Started:
+First you need to require the module in your bundled javascript file.
+```js
+const Chart = require('chartz');
+```
+Once the javascript is taken care of, you need to import the scss file.
+```scss
+@import('chartz/chartz')
+```
+Support for vanilla JS or CSS via `<script>` or `<link>` tags is not currently available, but that is part of the roadmap.
+
 Initialize a new chart with:
 ```javascript
 new Chart(elementId, options);
