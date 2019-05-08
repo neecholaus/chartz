@@ -44,8 +44,7 @@ The bare necessities for the options is this:
 ```
 
 ### Chart Types:
-There are many types on the roadmap, but for now there is only one. Please let me know what charts you would find most useful.
-`bar-vertical`
+There are many types on the roadmap, but for now there is only one – `bar-vertical`. Please let me know what charts you would find most useful.
 
 
 ### Item Interface
@@ -56,3 +55,7 @@ There are many types on the roadmap, but for now there is only one. Please let m
     classes: <array of strings> /* Optional */
 }
 ```
+
+### Additional Options
+By default you can add any of the following classes to an item to achieve similar styling to Bootstrap's associated colors.
+`success`  `danger`  `info` `secondary` `warning`  `secondary`
