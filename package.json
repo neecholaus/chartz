@@ -1,7 +1,7 @@
 {
     "name": "chartz",
-    "version": "1.0.1",
-    "description": "Nick Neuman",
+    "version": "1.0.2",
+    "description": "An easy to use, simple looking HTML5 chart renderer.",
     "main": "./chartz.js",
     "scripts": {
         "node-sass": "node-sass",
@@ -9,7 +9,7 @@
     },
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/neecholaus/tables.git"
+        "url": "git+https://github.com/neecholaus/chartz.git"
     },
     "author": "Nick Neuman",
     "license": "MIT",
@@ -19,8 +19,11 @@
     "homepage": "https://github.com/neecholaus/chartz#readme",
     "dependencies": {},
     "devDependencies": {},
-	"keywords": [
-		"chart",
-		"javascript"
-	]
+    "keywords": [
+        "charts",
+        "chartz",
+        "chart",
+        "visualization",
+        "javascript"
+    ]
 }

@@ -14,11 +14,11 @@ Once the javascript is taken care of, you need to import the scss file.
 Support for vanilla JS or CSS via `<script>` or `<link>` tags is not currently available, but that is part of the roadmap.
 
 Initialize a new chart with:
-```javascript
+```js
 new Chart(elementId, options);
 ```
 The bare necessities for the options is this:
-```javascript
+```js
 {
   items: [{
         name: <string>,
@@ -29,7 +29,7 @@ The bare necessities for the options is this:
 
 
 ### Options
-```javascript
+```js
 {
     items: [],
     type: <string>, /* Defaults to 'bar-vertical' */
@@ -43,9 +43,13 @@ The bare necessities for the options is this:
 }
 ```
 
+### Chart Types:
+There are many types on the roadmap, but for now there is only one. Please let me know what charts you would find most useful.
+`bar-vertical`
+
 
 ### Item Interface
-```javascript
+```js
 {
     name: <string>,
     height: <int>,
