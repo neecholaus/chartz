@@ -1,12 +1,23 @@
 #chart-container {
     font-family: sans-serif;
     width: 100%;
-    border: solid 1px #c3c3c3;
     margin: 0 auto;
 
     #chart-max-width-container {
+    	border: solid 1px #c3c3c3;
         text-align: center;
     }
+
+	.chart-x-axis-container {
+		text-align: center;
+	}
+	
+	.chart-x-axis-item {
+		display: inline-block;
+		margin: 0 auto;
+		color: #686868;
+		padding: 5px 0;
+	}
 
     .chart-item-container {
         display: inline-block;

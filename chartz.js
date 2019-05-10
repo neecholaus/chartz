@@ -28,35 +28,58 @@ class Chart {
         }
     }
 
+	/*
+	 * Returns {bars, axes}
+	 * Axes is optional, but bars is required.
+	 */
     build() {
-        var items = [];
-        for (var item in this.data.items) {
-            var height = this.data.items[item].height;
-            var classes = this.data.items[item].classes ? this.data.items[item].classes.join(' ') : '';
+        let bars = [],
+			axes = [];
 
-            let one = '<div class="chart-item-container">';
-            let two = `<div class="chart-item ${classes}" data-height="${height}">`;
-            let three = `<div class="chart-item-title" data-height="${height}">`;
-            let four = `${this.data.items[item].name}`;
-            let end = '</div>';
+        for (let idx in this.data.items) {
+            let item = this.data.items[idx],
+                classes = item.classes ? item.classes.join(' ') : '';
 
-            let el = one + two + three + four + end + end + end;
+            let a =  '<div class="chart-item-container">',
+                b = `<div class="chart-item ${classes}" data-height="${item.height}">`,
+				c = '';
 
-            items.push(el);
+			if(item.name) {
+                c = `<div class="chart-item-title" data-height="${item.height}">`;
+				c+= `${item.name}</div>`;
+			}
+
+			let d = '</div>';
+
+            let bar = [a,b,c,d,d].join('');
+
+            bars.push(bar);
+
+			// Axes
+			let e = `<div class="chart-x-axis-item">${item.x}</div>`;	
+
+			axes.push({x:e});
         }
-        return items;
+
+        return {bars,axes};
     }
 
     // Injection for bar type graphs
     inject() {
         return function () {
-            let con = document.getElementById(this.container);
-            let htmlString = '<div id="chart-max-width-container">';
+			let {bars, axes} = this.buildItems;
 
-            for (let item in this.buildItems) htmlString += this.buildItems[item];
+            let con = document.getElementById(this.container),
+                html = '<div id="chart-max-width-container">';
 
-            htmlString += '</div>';
-            con.innerHTML = htmlString;
+            for (let bar in bars) html += bars[bar];
+			html += '</div></div>';
+			html += '<div class="chart-x-axis-container">';
+			for(let idx in axes) {
+				html += axes[idx].x;
+			}
+
+            con.innerHTML = html;
             con.id = 'chart-container';
         }
     }
@@ -75,15 +98,13 @@ class Chart {
             }
 
             // Style bars
-            let all_bars = document.querySelectorAll('.chart-item-container');
-            let count_bars = all_bars.length;
-            let width = (100 / count_bars);
-            let maxWidth;
-            if(column && column.maxWidth) {
-                maxWidth = column.maxWidth;
-            }
+            let bars = document.querySelectorAll('.chart-item-container'),
+                width = (100 / bars.length),
+                maxWidth;
 
-            all_bars.forEach(function (e) {
+            if(column && column.maxWidth) maxWidth = column.maxWidth;
+
+            bars.forEach(function (e) {
                 let barContainer = e;
                 let bar = barContainer.getElementsByClassName('chart-item')[0];
 
@@ -97,11 +118,17 @@ class Chart {
             });
 
             // Style titles
-            let all_titles = document.querySelectorAll('.chart-item-title');
-            all_titles.forEach(function (e) {
+            let titles = document.querySelectorAll('.chart-item-title');
+            titles.forEach(function (e) {
                 let height = e.getAttribute('data-height');
                 e.style.lineHeight = `${height}px`;
             });
+			
+			let xAxisItems = document.querySelectorAll('.chart-x-axis-container .chart-x-axis-item');
+			xAxisItems.forEach(item => {
+				item.style.width = `${width}%`;
+				item.style.maxWidth = `${maxWidth}px`;
+			});
         }
     }
 }
