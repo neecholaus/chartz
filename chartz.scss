@@ -1,9 +1,9 @@
-#chart-container {
+.chart-container {
     font-family: sans-serif;
     width: 100%;
     margin: 0 auto;
 
-    #chart-max-width-container {
+    .chart-max-width-container {
     	border: solid 1px #c3c3c3;
         text-align: center;
     }
@@ -17,6 +17,7 @@
 		margin: 0 auto;
 		color: #686868;
 		padding: 5px 0;
+		overflow: hidden;
 	}
 
     .chart-item-container {

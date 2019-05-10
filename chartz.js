@@ -83,7 +83,7 @@ class Chart {
             
             let con = document.getElementById(this.parent);
 
-            html+= '<div id="chart-max-width-container">';
+            html+= '<div class="chart-max-width-container">';
 
             for(let bar in bars) html += bars[bar];
 
@@ -92,7 +92,9 @@ class Chart {
             if(['bottom',undefined].indexOf(this.data.container.axisPosition) !== -1) html+= injectAxis(axes); 
 
             con.innerHTML = html;
-            con.id = 'chart-container';
+            con.className += 'chart-container';
+			this.id = `chart-${this.parent}-` + new Date().getTime();
+			con.id = this.id;
         }
     }
 
@@ -101,7 +103,7 @@ class Chart {
             let {container, column} = this.data;
 
             // Style container
-            let con = document.getElementById('chart-container');
+            let con = document.getElementById(this.id);
 
             // Set the height of container if given
             if(container) {
@@ -111,7 +113,7 @@ class Chart {
             }
 
             // Style bars
-            let bars = document.querySelectorAll('.chart-item-container'),
+			let bars = con.querySelectorAll('.chart-item-container'),
                 barWidth = (100 / bars.length),
                 maxWidth;
 
@@ -131,13 +133,13 @@ class Chart {
             });
 
             // Style titles
-            let titles = document.querySelectorAll('.chart-item-title');
+            let titles = con.querySelectorAll('.chart-item-title');
             titles.forEach(function (e) {
                 let height = e.getAttribute('data-height');
                 e.style.lineHeight = `${height}px`;
             });
 
-            let xAxisItems = document.querySelectorAll('.chart-x-axis-container .chart-x-axis-item');
+            let xAxisItems = con.querySelectorAll('.chart-x-axis-container .chart-x-axis-item');
             xAxisItems.forEach(item => {
                 item.style.width = `${barWidth}%`;
                 item.style.maxWidth = `${maxWidth}px`;
