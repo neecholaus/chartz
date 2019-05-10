@@ -38,7 +38,8 @@ The bare necessities for the options is this:
         width: <int> /* Optional | Passed as percentage */
     },
     column: {
-        maxWidth: <int> /* Optional | Passed as px */
+        maxWidth: <int>, /* Optional | Passed as px */
+        axisPosition: <string> /* Optional | Default is bottom, can also choose top */
     }
 }
 ```
@@ -50,9 +51,10 @@ There are many types on the roadmap, but for now there is only one – `bar-vert
 ### Item Interface
 ```js
 {
-    name: <string>,
+    name: <string>, /* Optional | Displayed inside of the bars */
     height: <int>,
-    classes: <array of strings> /* Optional */
+    classes: <array of strings>, /* Optional */
+    x: <string> /* Optional | Will be displayed outside of the chart on either the top or bottom */
 }
 ```
 

@@ -1,6 +1,6 @@
 class Chart {
-    constructor(container, data) {
-        this.container = container;
+    constructor(parent, data) {
+        this.parent = parent;
         this.data = data;
         this.type = data.type ? data.type : 'bar-vertical';
 
@@ -67,17 +67,29 @@ class Chart {
     // Injection for bar type graphs
     inject() {
         return function () {
-            let {bars, axes} = this.buildItems;
+            const injectAxis = (axes) => {
+                let str = '<div class="chart-x-axis-container">';
 
-            let con = document.getElementById(this.container),
-                html = '<div id="chart-max-width-container">';
+                for(let idx in axes) str += axes[idx].x;
 
-            for (let bar in bars) html += bars[bar];
-            html += '</div></div>';
-            html += '<div class="chart-x-axis-container">';
-            for(let idx in axes) {
-                html += axes[idx].x;
+                str += '</div>';
+                return str;
             }
+            
+            let {bars, axes} = this.buildItems,
+                html = '';
+            
+            if(this.data.container.axisPosition == 'top') html+= injectAxis(axes);
+            
+            let con = document.getElementById(this.parent);
+
+            html+= '<div id="chart-max-width-container">';
+
+            for(let bar in bars) html += bars[bar];
+
+            html+= '</div></div>';
+
+            if(['bottom',undefined].indexOf(this.data.container.axisPosition) !== -1) html+= injectAxis(axes); 
 
             con.innerHTML = html;
             con.id = 'chart-container';
@@ -93,13 +105,14 @@ class Chart {
 
             // Set the height of container if given
             if(container) {
-                con.style.height = container.height ? container.height : 'auto';
-                con.style.width = container.width ? `${container.width}%` : 'auto';
+                let {height,width} = container;
+                con.style.height = height ? height : 'auto';
+                con.style.width = width ? `${width}%` : 'auto';
             }
 
             // Style bars
             let bars = document.querySelectorAll('.chart-item-container'),
-                width = (100 / bars.length),
+                barWidth = (100 / bars.length),
                 maxWidth;
 
             if(column && column.maxWidth) maxWidth = column.maxWidth;
@@ -109,12 +122,12 @@ class Chart {
                 let bar = barContainer.getElementsByClassName('chart-item')[0];
 
                 // set width of bar
-                barContainer.style.width = `${width}%`;
+                barContainer.style.width = `${barWidth}%`;
                 barContainer.style.maxWidth = `${maxWidth}px`;
 
-                let height = bar.getAttribute('data-height');
+                let barHeight = bar.getAttribute('data-height');
                 bar.style.textAlign = 'center';
-                bar.style.height = `${height}px`;
+                bar.style.height = `${barHeight}px`;
             });
 
             // Style titles
@@ -126,7 +139,7 @@ class Chart {
 
             let xAxisItems = document.querySelectorAll('.chart-x-axis-container .chart-x-axis-item');
             xAxisItems.forEach(item => {
-                item.style.width = `${width}%`;
+                item.style.width = `${barWidth}%`;
                 item.style.maxWidth = `${maxWidth}px`;
             });
         }
