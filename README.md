@@ -36,7 +36,7 @@ let options = {
     },
     {
       height: 300,
-	    x: 'Stat 3',
+      x: 'Stat 3',
       classes: ['success']
     }
   ],
