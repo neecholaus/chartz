@@ -1,8 +1,11 @@
 # Chartz
+![Version](https://img.shields.io/npm/v/chartz.svg)
+![Downloads](https://img.shields.io/npm/dw/chartz.svg) 
+![License](https://img.shields.io/npm/l/chartz.svg)
 
 ![Sreenshot of an example](./docs/example.png)
 
-### Getting Started:
+## Getting Started:
 First you need to require the module in your bundled javascript file.
 ```js
 const Chart = require('chartz');
@@ -17,44 +20,71 @@ Initialize a new chart with:
 ```js
 new Chart(elementId, options);
 ```
+## Example:
+The following options will give you this chart.
+![Second example screenshot](./docs/example2.png)
+```js
+let options = {
+  items: [
+    {
+      height: 200,
+      x: 'Stat 1'
+	},
+	{
+	  height: 100,
+	  x: 'Stat 2'
+    },
+    {
+      height: 300,
+	  x: 'Stat 3',
+	  classes: ['success']
+	}
+  ],
+  column: {
+    maxWidth: 150
+  },
+  container: {
+    width: 75
+  }
+}
+```
+
+## Options
 The bare necessities for the options is this:
 ```js
-{
+let options = {
   items: [{
-        name: <string>,
-        height: <int>
-    }]
+    name: <string>,
+    height: <int>
+  }]
 }
 ```
-
-
-### Options
 ```js
-{
-    items: [],
-    type: <string>, /* Defaults to 'bar-vertical' */
-    container: {
-        height: <string>, /* Optional | Passed exactly as given */
-        width: <int> /* Optional | Passed as percentage */
-    },
-    column: {
-        maxWidth: <int>, /* Optional | Passed as px */
-        axisPosition: <string> /* Optional | Default is bottom, can also choose top */
-    }
+let options = {
+  items: [],
+  type: <string>, /* Defaults to 'bar-vertical' */
+  container: {
+    height: <string>, /* Optional | Passed exactly as given */
+    width: <int> /* Optional | Passed as percentage */
+  },
+  column: {
+    maxWidth: <int>, /* Optional | Passed as px */
+    axisPosition: <string> /* Optional | Default is bottom, can also choose top */
+  }
 }
 ```
 
-### Chart Types:
+## Chart Types:
 There are many types on the roadmap, but for now there is only one – `bar-vertical`. Please let me know what charts you would find most useful.
 
 
-### Item Interface
+## Item Interface
 ```js
-{
-    name: <string>, /* Optional | Displayed inside of the bars */
-    height: <int>,
-    classes: <array of strings>, /* Optional */
-    x: <string> /* Optional | Will be displayed outside of the chart on either the top or bottom */
+let item = {
+  name: <string>, /* Optional | Displayed inside of the bars */
+  height: <int>,
+  classes: <array of strings>, /* Optional */
+  x: <string> /* Optional | Will be displayed outside of the chart on either the top or bottom */
 }
 ```
 
