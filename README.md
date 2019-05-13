@@ -29,16 +29,16 @@ let options = {
     {
       height: 200,
       x: 'Stat 1'
-	},
-	{
-	  height: 100,
-	  x: 'Stat 2'
+    },
+    {
+      height: 100,
+      x: 'Stat 2'
     },
     {
       height: 300,
-	  x: 'Stat 3',
-	  classes: ['success']
-	}
+      x: 'Stat 3',
+      classes: ['success']
+    }
   ],
   column: {
     maxWidth: 150
