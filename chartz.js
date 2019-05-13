@@ -56,7 +56,7 @@ class Chart {
             bars.push(bar);
 
             // Axes
-            let e = `<div class="chart-x-axis-item">${item.x ? item.x : ''}</div>`;	
+            let e = `<div class="chart-x-axis-item">${item.x ? item.x : ''}</div>`;
 
             axes.push({x:e});
         }
@@ -67,7 +67,7 @@ class Chart {
     // Injection for bar type graphs
     inject() {
         return function () {
-            const injectAxis = (axes) => {
+            const buildAxis = (axes) => {
                 let str = '<div class="chart-x-axis-container">';
 
                 for(let idx in axes) str += axes[idx].x;
@@ -75,12 +75,14 @@ class Chart {
                 str += '</div>';
                 return str;
             }
-            
+
+            const {...options} = this.data;
+
             let {bars, axes} = this.buildItems,
                 html = '';
-            
-            if(this.data.container.axisPosition == 'top') html+= injectAxis(axes);
-            
+
+            if(options.axisPosition == 'top') html+= buildAxis(axes);
+
             let con = document.getElementById(this.parent);
 
             html+= '<div class="chart-max-width-container">';
@@ -89,7 +91,7 @@ class Chart {
 
             html+= '</div></div>';
 
-            if(['bottom',undefined].indexOf(this.data.container.axisPosition) !== -1) html+= injectAxis(axes); 
+            if(options.axisPosition !== 'top') html+= buildAxis(axes);
 
             con.innerHTML = html;
             con.className += 'chart-container';

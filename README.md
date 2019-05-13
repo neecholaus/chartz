@@ -1,6 +1,6 @@
 # Chartz
 ![Version](https://img.shields.io/npm/v/chartz.svg)
-![Downloads](https://img.shields.io/npm/dw/chartz.svg) 
+![Downloads](https://img.shields.io/npm/dw/chartz.svg)
 ![License](https://img.shields.io/npm/l/chartz.svg)
 
 ![Sreenshot of an example](./docs/example.png)
@@ -66,8 +66,8 @@ let options = {
   },
   column: {
     maxWidth: <int>, /* Optional | Passed as px */
-    axisPosition: <string> /* Optional | Default is bottom, can also choose top */
-  }
+  },
+  axisPosition: <string> /* Optional | Default is bottom, can also choose top */
 }
 ```
 
